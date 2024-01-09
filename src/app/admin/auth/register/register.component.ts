@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { AuthServiceService } from '../../../services/auth-service.service';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthServiceService } from '../../../services/auth-service.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit{
  
   /**
-   * DEpendancy injection
+   * Dependancy injection
    */
   private fb = inject(FormBuilder);
   private authService = inject(AuthServiceService);
@@ -25,6 +25,8 @@ export class RegisterComponent implements OnInit{
   isConfirmPasswordFaild = false;
   isEmailInvalid = false;
   subscriptions: Subscription[] = [];
+  document: File | null = null;
+  photo: File | null = null;
 
   /**
    * component initing (lifecycle hook)
@@ -54,54 +56,60 @@ export class RegisterComponent implements OnInit{
         Validators.maxLength(100),
       ]),
       phoneNo: new FormControl(['',Validators.required, Validators.minLength(10),Validators.pattern('^[0-9]*$')]),
+      place: new FormControl('', [
+        Validators.required, Validators.minLength(3)
+      ]),
+      state: new FormControl('', [
+        Validators.required, Validators.minLength(3)
+      ]),
+      photo: new FormControl('', [
+        Validators.required,
+      ]),
+      document: new FormControl('', [
+        Validators.required,
+      ]),
     });
   }
 
-  /**
-   * @description -password confirmation 
-   * @param event -input event
-   * @returns 
-   */
-  passwordValidtion(event :KeyboardEvent){
-    if(this.isConfirmPasswordFaild){
-      if (event.key === 'Backspace' || event.code === 'Backspace') {
-        this.isConfirmPasswordFaild = false;
-        return;       
-      }
-    if(this.registerForm.get('password').value !== this.registerForm.get('confirmPassword').value){
-      this.isConfirmPasswordFaild = true;
-    }else{
-      this.isConfirmPasswordFaild = false;
-    }
+
+  onDocSelected(event:Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.document = input.files[0];
+    } else {
+      this.document = null;
     }
   }
+
+  
+  onPhotoSelected(event:Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.photo = input.files[0];
+    } else {
+      this.photo = null;
+    }
+  }
+
+
 
   /**
    * @description -register form submition
    */
   register(){
-    // if (this.registerForm.invalid) {
-    //   this.registerForm.markAllAsTouched();
-    //   if (this.registerForm.get('password').value && this.registerForm.get('confirmPassword').value && this.registerForm.get('password').value !== this.registerForm.get('confirmPassword').value) {
-    //     this.isConfirmPasswordFaild = true;
-    //   } else {
-    //     this.isConfirmPasswordFaild = false;
-    //   }
-    //   return;
-    // }
-
-    // if (this.registerForm.get('password').value !== this.registerForm.get('confirmPassword').value) {
-    //   this.isConfirmPasswordFaild = true;
-    // } else {
-    //   this.isConfirmPasswordFaild = false;
-    // }
+    const formData = new FormData();
     let registerDetails = this.registerForm.getRawValue();
-    console.log(registerDetails,"sendingg");
+    console.log(this.photo ,this.document);
     
-    this.subscriptions.push(this.authService.register(registerDetails).subscribe({
+    if(this.photo && this.document){
+      formData.append('photo', this.photo, this.photo.name);
+      formData.append('document', this.document, this.document.name);
+      formData.append('textFieldName', JSON.stringify(registerDetails));
+    }
+
+    this.subscriptions.push(this.authService.adminRegister(formData).subscribe({
       next:(res)=>{
-        this.router.navigate(['/auth/otp-verification'],{ queryParams: { data: registerDetails.email }});
-        // this._toastr.success(res.message, 'Success'); 
+        this.router.navigate(['/']);
       },
       error:(err)=>{
         // this._toastr.warning(err.error.message, 'warning');

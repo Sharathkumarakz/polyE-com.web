@@ -1,16 +1,16 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthServiceService } from '../../../services/auth-service.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthServiceService } from '../../../services/auth-service.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit{
- 
+export class LoginComponent {
+
   /**
    * Dependancy injection
    */
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit{
    */
   initFormGroup(): void { 
     this.loginForm = this.fb.group({
-      email: new FormControl('', [
+      email: new FormControl('', [  
         Validators.required,Validators.email
       ]),
       password: new FormControl('', [
@@ -57,14 +57,10 @@ export class LoginComponent implements OnInit{
     let loginDetails = this.loginForm.getRawValue();
     console.log(loginDetails,"sendingg");
     
-    this.subscriptions.push(this.authService.login(loginDetails).subscribe({
+    this.subscriptions.push(this.authService.adminLogin(loginDetails).subscribe({
       next:(res)=>{
-        if(res.verify){
-          this.router.navigate(['/auth/otp-verification'],{ queryParams: { data: loginDetails.email }});
-          return;
-        }
-        localStorage.setItem('shoppie', res.jwttoken);
-        this.router.navigate(['/']);
+        localStorage.setItem('admin-shoppie', res.jwttoken);
+        this.router.navigate(['/admin/admin-panel']);
       },
       error:(err)=>{
         // this._toastr.warning(err.error.message, 'warning');

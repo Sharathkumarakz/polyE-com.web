@@ -1,1 +1,23 @@
-<p>otp works!</p>
+
+<div class=" mx-auto border max-w-sm mt-20  dark:bg-gray-800 rounded">
+    <form class="shadow-md px-4 py-6">
+        <div class="flex justify-center gap-2 mb-6">
+            <form>
+            <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500" type="text" maxlength="1" pattern="[0-9]" [(ngModel)]="otp1" inputmode="numeric" [ngModelOptions]="{standalone: true}" autocomplete="one-time-code" required>
+            <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500" type="text" maxlength="1" pattern="[0-9]" [(ngModel)]="otp2" inputmode="numeric" [ngModelOptions]="{standalone: true}" autocomplete="one-time-code" required>
+            <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500" type="text" maxlength="1" pattern="[0-9]" [(ngModel)]="otp3" inputmode="numeric" [ngModelOptions]="{standalone: true}" autocomplete="one-time-code" required>
+            <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500" type="text" maxlength="1" pattern="[0-9]" [(ngModel)]="otp4" inputmode="numeric" [ngModelOptions]="{standalone: true}" autocomplete="one-time-code" required>
+            <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500" type="text" maxlength="1" pattern="[0-9]" [(ngModel)]="otp5" inputmode="numeric" [ngModelOptions]="{standalone: true}" autocomplete="one-time-code" required>
+            <input class="w-12 h-12 text-center border rounded-md shadow-sm focus:border-teal-500 focus:ring-teal-500" type="text" maxlength="1" pattern="[0-9]" [(ngModel)]="otp6" inputmode="numeric" [ngModelOptions]="{standalone: true}" autocomplete="one-time-code" required>
+            </form>
+        </div>
+        <div class="flex items-center justify-center">
+            <button (click)="submitOtp()" class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                Verify
+            </button>
+            <a (click)="resendOpt()" class="inline-block align-baseline font-bold text-sm text-teal-500 hover:text-teal-800 ml-4">
+                Resend OTP
+            </a>
+        </div>
+    </form>
+</div>

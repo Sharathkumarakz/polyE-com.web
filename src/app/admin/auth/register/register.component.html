@@ -1,0 +1,105 @@
+<section class="mt-40">
+    <div class="flex flex-col items-center justify-center px-20 py-8 mx-auto md:h-screen lg:py-0">
+        <a href="#" class="flex items-center mb-6 text-2xl font-semibold dark:text-black">
+            Shoppie - Admin registration
+        </a>
+        <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Register Now
+                </h1>
+                <form class="space-y-4 md:space-y-6" [formGroup]="registerForm" action="#">
+                    <div>
+                        <label for="usernme" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Name</label>
+                        <input type="username" name="username" id="username" formControlName="username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="username" required="">
+                        <span class="text-red-500" *ngIf="registerForm.get('username').hasError('required') && registerForm.get('username').touched">
+                            Username is required
+                        </span>
+                        <span class="text-red-500" *ngIf="registerForm.get('username').hasError('minlength') && registerForm.get('username').touched">
+                            Username must be at least 3 characters long
+                        </span>
+                    </div>
+                    <div>
+                        <label for="emai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input type="email" name="email" id="emails" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example@gmail.com" required="">
+                        <span class="text-red-500" *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').touched">
+                            Email is required
+                        </span>
+                        <span class="text-red-500"  *ngIf="registerForm.get('email').hasError('email') && registerForm.get('email').touched">
+                            Invalid email address 
+                        </span>
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <input type="password" name="password"  formControlName="password" id="password" placeholder="••••••••" type="password" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                        <span class="text-red-500" *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">
+                            Password is required
+                        </span>
+                        <span class="text-red-500" *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched">
+                            Password must be at least 8 characters long
+                        </span>
+                    </div>
+                    <div>
+                        <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
+                        <input type="confirm-password" name="confirm-password" formControlName="confirmPassword" id="confirm-password" type="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" >
+                        <span class="text-red-500" *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
+                            Confirm Password is required
+                        </span>
+                        <span class="text-red-500" *ngIf="isConfirmPasswordFaild">
+                            Confirm password faild
+                        </span>
+                    </div>
+                    <div>
+                        <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+                        <input maxlength="10"  type="number" formControlName="phoneNo" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="phone">
+                        <span class="text-red-500" *ngIf="registerForm.get('phoneNo').hasError('required') && registerForm.get('phoneNo').touched">
+                            Phone number is required
+                        </span>
+                        <span class="text-red-500" *ngIf="registerForm.get('phoneNo').hasError('maxlength') && registerForm.get('phoneNo').touched">
+                            Phone number must require 10 digits
+                        </span>
+                    </div>
+                    <div>
+                        <label for="place" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Place</label>
+                        <input type="place" name="place" id="place" formControlName="place" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="place" required="">
+                        <span class="text-red-500" *ngIf="registerForm.get('place').hasError('required') && registerForm.get('place').touched">
+                            Place is required
+                        </span>
+                        <span class="text-red-500" *ngIf="registerForm.get('place').hasError('minlength') && registerForm.get('place').touched">
+                            Place must be at least 3 characters long
+                        </span>
+                    </div>
+                    <div>
+                        <label for="state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">State</label>
+                        <input type="state" name="place" id="state" formControlName="state" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="state" required="">
+                        <span class="text-red-500" *ngIf="registerForm.get('state').hasError('required') && registerForm.get('state').touched">
+                            State is required
+                        </span>
+                        <span class="text-red-500" *ngIf="registerForm.get('state').hasError('minlength') && registerForm.get('state').touched">
+                            State must be at least 3 characters long
+                        </span>
+                    </div>
+                    <div>
+                        <label for="state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
+                        <input type="file" (change)="onPhotoSelected($event)"  name="photo" id="photo" formControlName="photo" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="username" required="" accept="image/*">
+                        <span class="text-red-500" *ngIf="registerForm.get('state').hasError('state') && registerForm.get('state').touched">
+                            Photo is required
+                        </span>
+                    </div>
+                    <div>
+                        <label for="state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supporting documents</label>
+                        <input type="file" name="" id="document" (change)="onDocSelected($event)" formControlName="document" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="document" required="" accept="image/*">
+                        <span class="text-red-500" *ngIf="registerForm.get('state').hasError('state') && registerForm.get('state').touched">
+                            Supporting document is required
+                        </span>
+                    </div>
+             
+                    <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" (click)="register()">Submit</button>
+                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                        Already have an account? <a routerLink="/admin/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+  </section>

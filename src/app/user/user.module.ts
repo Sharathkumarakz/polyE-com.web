@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { AddsComponent } from './adds/adds.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { TabswitchComponent } from './tabswitch/tabswitch.component';
+import { FooterComponent } from './layouts/footer/footer.component';
+import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from '../shared/shared/shared.module';
 
 
 @NgModule({
@@ -16,10 +19,12 @@ import { TabswitchComponent } from './tabswitch/tabswitch.component';
     AddsComponent,
     ProductCardComponent,
     TabswitchComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    SharedModule
   ]     
 })
 export class UserModule { }
