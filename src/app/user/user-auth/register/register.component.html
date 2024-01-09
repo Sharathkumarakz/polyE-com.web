@@ -41,28 +41,34 @@
                     </div>
                     <div>
                         <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-                        <input type="confirm-password" name="confirm-password" formControlName="confirmPassword" id="confirm-password" type="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" (keydown)="passwordValidtion($event)">
+                        <input type="confirm-password" name="confirm-password" formControlName="confirmPassword" id="confirm-password" type="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
                         <span class="text-red-500" *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
                             Confirm Password is required
                         </span>
-                        <span class="text-red-500" *ngIf="isConfirmPasswordFaild">
-                            Confirm password faild
+                        <span class="text-red-500" *ngIf="registerForm.get('confirmPassword').hasError('minlength') && registerForm.get('password').touched">
+                            Confirm Password must be at least 8 characters long
                         </span>
                     </div>
                     <div>
                         <label for="phoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
-                        <input maxlength="10"  type="number" formControlName="phoneNo" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input maxlength="10" pattern="[0-9]*" formControlName="phoneNo" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="phone">
                         <span class="text-red-500" *ngIf="registerForm.get('phoneNo').hasError('required') && registerForm.get('phoneNo').touched">
                             Phone number is required
                         </span>
-                        <span class="text-red-500" *ngIf="registerForm.get('phoneNo').hasError('maxlength') && registerForm.get('phoneNo').touched">
+                        <span class="text-red-500" *ngIf="registerForm.get('phoneNo').hasError('minlength') && registerForm.get('phoneNo').touched">
                             Phone number must require 10 digits
+                        </span>
+                        <span class="text-red-500" *ngIf="registerForm.get('phoneNo').hasError('maxlength') && registerForm.get('phoneNo').touched && !registerForm.get('phoneNo').hasError('pattern')">
+                            Phone number can't exceed 10 digits
+                        </span>
+                        <span class="text-red-500" *ngIf="registerForm.get('phoneNo').hasError('pattern') && registerForm.get('phoneNo').touched">
+                            Please enter numeric digits
                         </span>
                     </div>
              
                     <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" (click)="register()">Create an account</button>
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                        Already have an account? <a routerLink="/admin/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+                        Already have an account? <a routerLink="/auth/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
                     </p>
                 </form>
             </div>

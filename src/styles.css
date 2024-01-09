@@ -10,3 +10,4 @@ body{
 html {
     scroll-behavior: smooth;
    }
+@import '../node_modules/ngx-toastr/toastr.css';

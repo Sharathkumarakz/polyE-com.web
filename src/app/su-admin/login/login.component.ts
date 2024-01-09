@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthServiceService);
   private router = inject(Router);
+  private toastr = inject(ToastrService);
 
   /**
    * variables
@@ -54,6 +56,12 @@ export class LoginComponent {
    * @description -login form submition
    */
   login(){
+    if(this.loginForm.invalid){
+      this.loginForm.controls.email.markAsTouched();
+      this.loginForm.controls.password.markAsTouched()
+      return;
+    }
+
     let loginDetails = this.loginForm.getRawValue();
     this.subscriptions.push(this.authService.suAdminLogin(loginDetails).subscribe({
       next:(res)=>{
@@ -61,7 +69,7 @@ export class LoginComponent {
         this.router.navigate(['/super-admin/dashboard']);
       },
       error:(err)=>{
-        // this._toastr.warning(err.error.message, 'warning');
+        this.toastr.warning(err.error.message, 'warning');
       }
     })
     );

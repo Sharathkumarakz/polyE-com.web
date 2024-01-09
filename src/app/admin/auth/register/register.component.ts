@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthServiceService } from '../../../services/auth-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,7 @@ export class RegisterComponent implements OnInit{
   private fb = inject(FormBuilder);
   private authService = inject(AuthServiceService);
   private router = inject(Router);
+  private toastr = inject(ToastrService);
 
   /**
    * variables
@@ -55,7 +57,12 @@ export class RegisterComponent implements OnInit{
         Validators.minLength(8),
         Validators.maxLength(100),
       ]),
-      phoneNo: new FormControl(['',Validators.required, Validators.minLength(10),Validators.pattern('^[0-9]*$')]),
+      phoneNo: new FormControl('',[
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+        Validators.pattern('^[0-9]*$')
+      ]),
       place: new FormControl('', [
         Validators.required, Validators.minLength(3)
       ]),
@@ -97,10 +104,19 @@ export class RegisterComponent implements OnInit{
    * @description -register form submition
    */
   register(){
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
+    
     const formData = new FormData();
     let registerDetails = this.registerForm.getRawValue();
-    console.log(this.photo ,this.document);
-    
+   
+    if(registerDetails.password !== registerDetails.confirmPassword){
+      this.toastr.warning("Confirm password failed");
+      return;
+    }
+
     if(this.photo && this.document){
       formData.append('photo', this.photo, this.photo.name);
       formData.append('document', this.document, this.document.name);
@@ -112,7 +128,7 @@ export class RegisterComponent implements OnInit{
         this.router.navigate(['/']);
       },
       error:(err)=>{
-        // this._toastr.warning(err.error.message, 'warning');
+        this.toastr.warning(err.error.message, 'warning');
       }
     })
     );

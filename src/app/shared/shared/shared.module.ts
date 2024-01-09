@@ -4,6 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { AuthServiceService } from '../../services/auth-service.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [],
@@ -11,13 +14,15 @@ import { AuthServiceService } from '../../services/auth-service.service';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule 
+    FormsModule,
+    ToastrModule.forRoot(),
   ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ToastrModule,
   ],
   providers:[AuthServiceService]
 })

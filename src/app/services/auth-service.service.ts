@@ -26,16 +26,16 @@ export class AuthServiceService {
   * @param data -User details
   * @returns 
   */
-  login(data:FormData):Observable<{jwttoken:string,verify:boolean}>{
-    return this.http.post<{jwttoken:string,verify:boolean}>(`${this.apiUrl}/login`,data)
+  login(data:FormData):Observable<{jwttoken:string,verify:boolean,message:string}>{
+    return this.http.post<{jwttoken:string,verify:boolean,message:string}>(`${this.apiUrl}/login`,data)
   }
 
    /**
    * @description -API function for resend OTP
    * @param data -User email id
    */
-  resendOtp(emailId:string): Observable<{success:boolean}>{
-    return this.http.post<{success:boolean}>(`${this.apiUrl}/resend-otp`,{email:emailId});   
+  resendOtp(emailId:string): Observable<{success:boolean,message:string}>{
+    return this.http.post<{success:boolean,message:string}>(`${this.apiUrl}/resend-otp`,{email:emailId});   
   }
 
   /**
