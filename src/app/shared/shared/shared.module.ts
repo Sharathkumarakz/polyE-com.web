@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SuperAdminService } from '../../services/super-admin.service';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     ToastrModule,
+    NgSelectModule, 
   ],
-  providers:[AuthServiceService]
+  providers:[AuthServiceService,SuperAdminService] 
 })
 export class SharedModule { }

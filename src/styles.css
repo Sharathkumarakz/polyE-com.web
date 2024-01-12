@@ -11,3 +11,4 @@ html {
     scroll-behavior: smooth;
    }
 @import '../node_modules/ngx-toastr/toastr.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";

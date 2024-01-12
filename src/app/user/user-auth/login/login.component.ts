@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit{
             return;
           }, 2000);
         }else{
-          localStorage.setItem('shoppie', res.jwttoken);
+          localStorage.setItem('infoTech', res.jwttoken);
           this.router.navigate(['/']);
         }
       },

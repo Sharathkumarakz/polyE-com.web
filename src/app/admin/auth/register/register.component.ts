@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit{
   subscriptions: Subscription[] = [];
   document: File | null = null;
   photo: File | null = null;
+  submit='Submit'
 
   /**
    * component initing (lifecycle hook)
@@ -122,19 +123,26 @@ export class RegisterComponent implements OnInit{
       formData.append('document', this.document, this.document.name);
       formData.append('textFieldName', JSON.stringify(registerDetails));
     }
-
+    this.submit ='Submitting...'
+    console.log(formData,'re');
+    
     this.subscriptions.push(this.authService.adminRegister(formData).subscribe({
       next:(res)=>{
+        this.submit ='Submitted'
+        this.toastr.success(res.message, 'Success');
+        setTimeout(() => {
         this.router.navigate(['/']);
+        }, 2000);
       },
       error:(err)=>{
+        this.submit = 'Submit'
         this.toastr.warning(err.error.message, 'warning');
       }
     })
     );
   }
 
-/**
+ /**
  * destroing all calls
  */
   ngOnDestroy(): void {

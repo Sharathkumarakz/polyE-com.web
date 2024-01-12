@@ -64,7 +64,7 @@ export class OtpComponent implements OnInit{
       next:(res) => {
         this.toastr.success("OTP verification successfull");
         setTimeout(() => {
-          localStorage.setItem('shoppie', res.jwttoken);
+          localStorage.setItem('infoTech', res.jwttoken);
           this.router.navigate(['/']);  
         }, 2000);
       },

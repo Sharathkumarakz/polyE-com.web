@@ -65,7 +65,7 @@ export class LoginComponent {
     let loginDetails = this.loginForm.getRawValue();
     this.subscriptions.push(this.authService.suAdminLogin(loginDetails).subscribe({
       next:(res)=>{
-        localStorage.setItem('super-shoppie', res.jwttoken);
+        localStorage.setItem('super-infoTech', res.jwttoken);
         this.router.navigate(['/super-admin/dashboard']);
       },
       error:(err)=>{
