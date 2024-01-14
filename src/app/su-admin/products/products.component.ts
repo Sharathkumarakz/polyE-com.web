@@ -121,20 +121,15 @@ addProduct(){
  
    
 
-  console.log(JSON.stringify(productDetails));
-   
   if(this.image){
     formData.append('image', this.image, this.image.name);
     formData.append('textFieldName', JSON.stringify(productDetails));
   }
   
-
-console.log(this.image,"adjfhdsfkdfjk");
-
   this.superAdminService.addProduct(formData).subscribe({
     next:(res:any)=>{
-       console.log(res);
-       
+      this.toster.success('Product added successfully')
+       this.products = res.data;
     },
     error:(err)=>{
         this.toster.warning(err.error.message)

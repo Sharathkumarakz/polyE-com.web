@@ -124,8 +124,7 @@ export class RegisterComponent implements OnInit{
       formData.append('textFieldName', JSON.stringify(registerDetails));
     }
     this.submit ='Submitting...'
-    console.log(formData,'re');
-    
+
     this.subscriptions.push(this.authService.adminRegister(formData).subscribe({
       next:(res)=>{
         this.submit ='Submitted'

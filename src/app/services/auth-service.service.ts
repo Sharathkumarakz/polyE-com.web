@@ -47,6 +47,15 @@ export class AuthServiceService {
   }
 
 
+  /**
+  * @description -API function for Submit OTP
+  * @param data -User email id
+  */
+  isUserActivate(): Observable<any>{
+      return this.http.get(`${this.apiUrl}/user/get-user-details`);   
+  }
+
+
 
 
                         /**

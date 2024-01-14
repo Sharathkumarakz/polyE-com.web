@@ -1,19 +1,82 @@
 
 
-<div class="mb-4 mt-4 border-b border-gray-200 dark:border-black justify-center">
+
+<nav class="flex space-x-2 justify-center mt-5" aria-label="Tabs" role="tablist">
+ 
+    <button
+    *ngFor="let item of categories"
+    type="button"
+    class="text-[15px] tracking-wider mb-2 py-1 px-2 inline-flex items-center gap-x-2 bg-transparent text-sm text-center text-black rounded-lg hover:text-blue-600 disabled:opacity-50 disabled:pointer-events-none dark:hover:text-gray-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 dark:hover:text-gray-300 font-extrabold"
+    [ngClass]="{
+      'hs-tab-active:bg-gray-200 hs-tab-active:text-gray-800 hs-tab-active:hover:text-gray-800 dark:hs-tab-active:bg-gray-700 dark:hs-tab-active:text-white': item.categoryName === 'mobile'
+    }"
+    id="pills-on-gray-color-item-2"
+    data-hs-tab="#pills-on-gray-color-2"
+    aria-controls="pills-on-gray-color-2"
+    role="tab"
+    (click)="getSubCategory(item._id)" >
+      {{item.categoryName}}
+    </button>
+  
+  </nav>
+
+  
+<div class="mb-4 mt-4 border-b border-gray-200 justify-center">
     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center justify-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
         <li class="me-2" role="presentation">
-            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</button>
+            <button (click)="getAllProductsOfMainCtegory()" class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">All</button>
         </li>
-        <li class="me-2" role="presentation">
-            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</button>
-        </li>
-        <li class="me-2" role="presentation">
-            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Settings</button>
-        </li>
-        <li role="presentation">
-            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Contacts</button>
+        <li  *ngFor="let item of subCategory" class="me-2" role="presentation">
+            <button    [class.selected]="true" (click)="categorySwitching(item._id)" class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="" aria-selected="false">{{item.categoryName}}</button>
         </li>
     </ul>
-</div>
+</div> 
 
+<!-- product listing -->
+<div class="flex flex-wrap m-8 justify-center">
+
+
+    <div *ngFor="let item of product" class="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-80 !m-5">
+        <div class="relative mx-4 mt-4  overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-80 ">
+          <img
+            src="{{item.image}}"
+            alt="card-image" class="object-cover w-full h-full" />
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-2">
+            <p class="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
+               {{item.name}}
+            </p>
+            <p class="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
+                &#x20B9;{{item.price}}
+            </p>
+          </div>
+          <p class="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 opacity-75">
+           {{item.description}}
+          </p>
+        </div>
+        <div class="p-6 pt-0">
+            <button
+            (click)="viewProduct(item._id)"
+            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            type="button">
+            View
+          </button>
+            <button
+            (click)="addTowhishlist(item._id)"
+            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            type="button">
+            Add to Wishlist
+          </button>
+          <button
+            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            type="button">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+<div *ngIf="product.length === 0">
+  <img src="https://cdni.iconscout.com/illustration/premium/thumb/no-product-8316266-6632286.png" alt="">
+</div>
+</div>

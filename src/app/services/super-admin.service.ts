@@ -97,8 +97,6 @@ deleteMainCategory(id:string){
 * Api function for add product
 */
 addProduct(data:FormData): Observable<any> {
-  console.log(data);
-  
   return this.http.post<any>(`${this.apiUrl}/suAdmin/add-product`,data);
 }
 
