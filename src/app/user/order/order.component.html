@@ -1,1 +1,47 @@
-<p>order works!</p>
+<app-header></app-header>
+<div class="flex flex-wrap m-8 justify-center mt-20">
+    <h1 class="font-extrabold align-middle ">ORDERS</h1>
+</div>
+<div *ngIf="!loader && order.length" class="flex justify-center">
+    <div  class="md:w-3/4">
+        <div *ngFor="let item of order" class="bg-white rounded-lg shadow-md p-6 mb-4">
+            <div  >
+            <table class="w-full">
+                <thead >
+                    <tr>
+                        <th class="text-left font-semibold">Product</th>
+                        <th class="text-left font-semibold">Price</th>
+                        <th class="text-left font-semibold">Quantity</th>
+                        <th class="text-left font-semibold">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let product of item.product;">
+                        <td class="py-4">
+                            <div class="flex items-center">
+                                <img class="h-16 w-16 mr-4" src="{{product.productId.image}}" alt="Product image">
+                                <span class="font-semibold">{{product.productId.name}}</span>
+                            </div>
+                        </td>
+                        <td class="py-4">{{product.productId.price}}</td>
+                        <td class="py-4">
+                            {{product.quantity}}
+                        </td>
+                        <td class="py-4"> {{product.singleTotal}}</td>
+                    </tr>
+                    <!-- More product rows -->
+                </tbody>
+            </table>
+          </div>
+          <button class="cursor-pointer text-blue-500">Order date : {{ item.date | date:'short' }}</button>
+          <button class="ml-6 cursor-pointer">Status : {{item.status}}</button>
+          <button class="flex justify-end cursor-pointer font-extrabold text-black-500">Total : {{item.total}}</button>
+        </div>
+    </div>
+</div>
+<div class="flex justify-center" *ngIf="!order.length">
+<img src="https://img.freepik.com/free-vector/order-food-concept-illustration_114360-7050.jpg?w=740&t=st=1705346084~exp=1705346684~hmac=4bc25ce19120dae435d84a8b40d8e2e10a8afc89dbbb27f3ec6612d0bf0f8282" alt="">
+</div>
+<div *ngIf="loader" class="flex flex-wrap m-8 justify-center mt-[50vh]">
+    <h1 class="font-extrabold align-middle ">Loading...</h1>
+</div>

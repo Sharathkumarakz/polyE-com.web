@@ -1,7 +1,11 @@
-<app-header></app-header>
+
+<div>
+    <app-header></app-header>
+</div>
 <div class="flex flex-wrap m-8 justify-center mt-20">
 <h1 class="font-extrabold align-middle ">CART</h1>
 </div>
+<div>
 <div *ngIf="!loader && cart.length" class="flex justify-center">
     <div class="py-8 w-[80vw]">
         <div  class="container mx-auto px-4">
@@ -67,7 +71,7 @@
             </div>
         </div>
     </div>
-
+</div>
 </div>
 <div class="flex justify-center" *ngIf="!cart.length">
 <img src="https://cdni.iconscout.com/illustration/premium/thumb/confusing-woman-due-to-empty-cart-4558760-3780056.png" alt="">

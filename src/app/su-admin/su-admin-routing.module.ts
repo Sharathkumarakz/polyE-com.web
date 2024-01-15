@@ -12,8 +12,8 @@ const routes: Routes = [
   {path:'admin-requests',component:DashboardComponent,canActivate:[AdminGuardService]},
   {path:'category',component:DashboardComponent,canActivate:[AdminGuardService]},
   {path:'products',component:DashboardComponent,canActivate:[AdminGuardService]},
-  {path:'active-admins',component:DashboardComponent,canActivate:[AdminGuardService]}
-
+  {path:'active-admins',component:DashboardComponent,canActivate:[AdminGuardService]},
+  {path:'su-admin-orders',component:DashboardComponent,canActivate:[AdminGuardService]}
 ];
 
 @NgModule({

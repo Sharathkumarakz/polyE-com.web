@@ -10,6 +10,7 @@ import { AdminRequestsComponent } from './admin-requests/admin-requests.componen
 import { CategoryComponent } from './category/category.component';
 import { ProductsComponent } from './products/products.component';
 import { ActiveAdminsComponent } from './active-admins/active-admins.component';
+import { OrdersComponent } from './orders/orders.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ActiveAdminsComponent } from './active-admins/active-admins.component';
     AdminRequestsComponent,
     CategoryComponent,
     ProductsComponent,
-    ActiveAdminsComponent
+    ActiveAdminsComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,

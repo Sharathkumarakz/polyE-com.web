@@ -8,6 +8,7 @@ import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { OrderComponent } from './order/order.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'wishList',component:WishlistComponent,canActivate:[UserGuardService]},
   {path:'cart',component:CartComponent,canActivate:[UserGuardService]},
   {path:'checkout',component:CheckoutComponent,canActivate:[UserGuardService]},
+  {path:'orders',component:OrderComponent,canActivate:[UserGuardService]},
   {path:'order-success',component:OrderSuccessComponent,canActivate:[UserGuardService]},
   {path:'auth',loadChildren:()=>import('./user-auth/user-auth.module').then((m)=>m.UserAuthModule)},
 ];

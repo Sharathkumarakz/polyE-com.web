@@ -10,4 +10,8 @@ export class DashboardComponent {
 
   public router= inject(Router);
 
+  logout(){
+     localStorage.removeItem('super-infoTech');
+     this.router.navigate(['/super-admin']);
+  }
 }

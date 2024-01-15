@@ -114,4 +114,18 @@ deleteProduct(id:string){
   return this.http.get(`${this.apiUrl}/suAdmin/delete-product/`+id);
 }
   
+
+/**
+ * api Method to get orders
+ */
+getOrders(){
+  return this.http.get(`${this.apiUrl}/suAdmin/orders`);
+}
+
+/**
+ * api Method to set order status
+ */
+setOrderStatus(data:object){
+  return this.http.post(`${this.apiUrl}/suAdmin/order-status`,data);
+}
 }

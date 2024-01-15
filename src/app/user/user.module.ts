@@ -16,6 +16,7 @@ import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { OrderComponent } from './order/order.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     ProductComponent,
     CartComponent,
     CheckoutComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
+    OrderComponent
   ],
   imports: [
     UserRoutingModule,
