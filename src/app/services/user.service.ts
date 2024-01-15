@@ -59,11 +59,47 @@ export class UserService {
   removeFromWishlist(id:string){
       return this.http.post(`${this.apiUrl}/remove-whishlist`,{id:id});
   }
+
  /**
   * Method to get product details
   */
   getProductDetails(id:string){
     return this.http.get(`${this.apiUrl}/product-details/`+id);
+  }
+
+ /**
+  *  API function for add to cart
+  */
+  addToCart(id:string){
+    return this.http.post(`${this.apiUrl}/add-cart`,{id:id});
+  }
+
+   /**
+  *  API function to get cart
+  */
+  getCartData(){
+    return this.http.get(`${this.apiUrl}/get-cart`);
+  }
+
+ /**
+  *  API function to change cart quantity
+  */
+  cartQuantityChange(data:object){
+    return this.http.post(`${this.apiUrl}/cart-quantity-change`,data);
+  }
+
+  /**
+   * Api function to remove product from cart
+   */
+  removeFromCart(id:string){
+    return this.http.get(`${this.apiUrl}/cart-remove/`+id);
+  }
+
+  /**
+   * Method for make order
+   */
+  makeOrder(data:Object){
+    return this.http.post(`${this.apiUrl}/make-order`,data);
   }
 
 }

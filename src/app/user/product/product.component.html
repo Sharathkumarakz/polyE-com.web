@@ -34,8 +34,8 @@
                 </div>
                 <div class="mb-4">
                     <div class="flex items-center mt-2">
-                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">Add to Whishlist</button>
-                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">Add to cart</button>
+                        <button (click)="addTowhishlist(product[0]._id)" class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">Add to Whishlist</button>
+                        <button (click)="addToCart(product[0]._id)" class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">Add to cart</button>
                     </div>
                 </div>
                 <div>

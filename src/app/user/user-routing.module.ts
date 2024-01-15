@@ -5,12 +5,18 @@ import { ProfileComponent } from './profile/profile.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { UserGuardService } from '../guards/user-activate.guard';
 import { ProductComponent } from './product/product.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'profile',component:ProfileComponent},
   {path:'view-product/:id',component:ProductComponent},
   {path:'wishList',component:WishlistComponent,canActivate:[UserGuardService]},
+  {path:'cart',component:CartComponent,canActivate:[UserGuardService]},
+  {path:'checkout',component:CheckoutComponent,canActivate:[UserGuardService]},
+  {path:'order-success',component:OrderSuccessComponent,canActivate:[UserGuardService]},
   {path:'auth',loadChildren:()=>import('./user-auth/user-auth.module').then((m)=>m.UserAuthModule)},
 ];
 

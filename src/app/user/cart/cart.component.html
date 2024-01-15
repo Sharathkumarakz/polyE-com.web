@@ -1,0 +1,77 @@
+<app-header></app-header>
+<div class="flex flex-wrap m-8 justify-center mt-20">
+<h1 class="font-extrabold align-middle ">CART</h1>
+</div>
+<div *ngIf="!loader && cart.length" class="flex justify-center">
+    <div class="py-8 w-[80vw]">
+        <div  class="container mx-auto px-4">
+            <div  class="flex flex-col md:flex-row gap-4">
+                <div  class="md:w-3/4">
+                    <div *ngFor="let item of cart" class="bg-white rounded-lg shadow-md p-6 mb-4">
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th class="text-left font-semibold">Product</th>
+                                    <th class="text-left font-semibold">Price</th>
+                                    <th class="text-left font-semibold">Quantity</th>
+                                    <th class="text-left font-semibold">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-4">
+                                        <div class="flex items-center">
+                                            <img class="h-16 w-16 mr-4" src="{{item.product.image}}" alt="Product image">
+                                            <span class="font-semibold">{{item.product.name}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4">{{item.product.price}}rs</td>
+                                    <td class="py-4">
+                                        <div class="flex items-center">
+                                            <button (click)="changeCount('minus',item.product._id)" class="border rounded-md py-2 px-4 mr-2">-</button>
+                                            <span class="text-center w-8">{{item.quantity}}</span>
+                                            <button (click)="changeCount('plus',item.product._id)" class="border rounded-md py-2 px-4 ml-2">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="py-4">{{item.productTotalPrice}}</td>
+                                </tr>
+                                <!-- More product rows -->
+                            </tbody>
+                            <button (click)="removeFromCart(item._id)" class="cursor-pointer text-red-500">Remove from here</button>
+                        </table>
+                    </div>
+                </div>
+                <div class="md:w-1/4">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-lg font-semibold mb-4">Summary</h2>
+                        <div class="flex justify-between mb-2">
+                            <span>Subtotal</span>
+                            <span>{{total}}</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>Taxes</span>
+                            <span>$0.00</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span>Shipping</span>
+                            <span>$0.00</span>
+                        </div>
+                        <hr class="my-2">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold">Total</span>
+                            <span class="font-semibold">{{total}}rs</span>
+                        </div>
+                        <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full" routerLink="/checkout">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="flex justify-center" *ngIf="!cart.length">
+<img src="https://cdni.iconscout.com/illustration/premium/thumb/confusing-woman-due-to-empty-cart-4558760-3780056.png" alt="">
+</div>
+<div *ngIf="loader" class="flex flex-wrap m-8 justify-center mt-[50vh]">
+    <h1 class="font-extrabold align-middle ">Loading...</h1>
+</div>

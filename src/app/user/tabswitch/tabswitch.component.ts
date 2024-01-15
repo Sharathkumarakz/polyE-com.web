@@ -85,6 +85,34 @@ export class TabswitchComponent implements OnInit{
     }
 
 
+    addToCart(id:string){
+      this.authService.isUserActivate().subscribe({
+       next:() =>{
+          this.userService.addToCart(id).subscribe((res:any) => {
+            if(res.success){
+              this.toastr.success("Added to Cart");
+            }
+            if(res.exist){
+              this.toastr.info("Already in Cart");
+            }
+          });
+       },error:() =>{
+        Swal.fire({
+          title: 'You need to login first!',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Login now!'
+        }).then((result) => {
+          if(result.isConfirmed){
+            this.router.navigate(['/auth/login']);
+          }
+           } )
+       }
+      })
+    }
+
+
     viewProduct(id:string){
       this.router.navigate(['/view-product/'+id]);
     }

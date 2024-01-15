@@ -2,7 +2,7 @@
 <div class="flex flex-wrap m-8 justify-center mt-20">
 <h1 class="font-extrabold align-middle ">WISHLIST</h1>
 </div>
-<div class="flex flex-wrap m-8 justify-center ">
+<div *ngIf="!loader" class="flex flex-wrap m-8 justify-center ">
 
     <div *ngFor="let item of product" class="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-80 !m-5">
         <div class="relative mx-4 mt-4 flex overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-60 ">
@@ -37,6 +37,7 @@
             Remove from here
           </button>
           <button
+            (click)="addToCart(item.product._id)"
             class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
             type="button">
             Add to Cart
@@ -44,6 +45,9 @@
         </div>
       </div>
 </div>
-<div *ngIf="product.length === 0" class="justify-center">
-    <img src="https://cdni.iconscout.com/illustration/premium/thumb/no-product-8316266-6632286.png" alt="">
+<div *ngIf="product.length === 0 && !loader" class="flex justify-center">
+    <img src="https://www.our-eshop.com/frontend/assets/images/no-wish-list.png" alt="">
+</div>
+<div *ngIf=loader class="flex flex-wrap m-8 justify-center mt-[50vh]">
+    <h1 class="font-extrabold align-middle ">Loading...</h1>
 </div>
