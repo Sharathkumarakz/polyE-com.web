@@ -1,0 +1,140 @@
+<h1 class="m-5">Category Management</h1>
+
+<div style="display: flex; " >
+    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 mr-5">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+               Catagory
+            </h1>
+            <form class="space-y-4 md:space-y-6" (ngSubmit)="addMainCategory()" [formGroup]="mainCategoryForm" #regMain="ngForm">
+                <div>
+                    <label for="mainCategory" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                    <input type="mainCategory" formControlName="mainCategory"  name="mainCategory" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="category name" required="">
+                    <span style="color:red" class="err" *ngIf="mainCategoryForm.controls.mainCategory.invalid && mainCategoryForm.controls.mainCategory.touched || mainCategoryForm.controls.mainCategory.invalid && regMain.submitted"><small>*category name required</small></span><br>
+  
+                </div>
+                <div>
+                    <label for="mainDescription" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    <input type="mainDescription" formControlName="mainDescription" name="mainDescription" id="mainDescription" placeholder="description" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                    <span style="color:red" class="err" *ngIf="mainCategoryForm.controls.mainDescription.invalid && mainCategoryForm.controls.mainDescription.touched || mainCategoryForm.controls.mainDescription.invalid && regMain.submitted"><small>*description required</small></span><br>
+
+                </div>
+             
+                <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Add Category</button>
+            </form>
+        </div>
+    </div>
+    <!-- Sub Category Form -->
+
+    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-3 space-y-2 md:space-y-3 sm:p-4">
+            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+              Sub-catagory
+            </h1>
+            <form class="space-y-4 md:space-y-6" [formGroup]="categoryForm" (ngSubmit)="addCategory()" #reg="ngForm">
+                <div>
+                    <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                    <input type="category" formControlName="category"  name="category" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="category name" required="">
+                    <span style="color:red" class="err" *ngIf="categoryForm.controls.category.invalid && categoryForm.controls.category.touched || categoryForm.controls.category.invalid && reg.submitted"><small>*category name required</small></span><br>
+
+                </div>
+                <div>
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    <input type="description" formControlName="description" name="description" id="description" placeholder="description" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                    <span style="color:red" class="err" *ngIf="categoryForm.controls.description.invalid && categoryForm.controls.description.touched || categoryForm.controls.description.invalid && reg.submitted"><small>*description required</small></span><br>
+
+                </div>
+                <div class="custom-select" style="width:300px;">
+                    <select formControlName="origin">
+                      <option value="">Parent category</option>
+                      <option *ngFor="let item of mainCategory" [value]="item.categoryName">{{item.categoryName}}</option>
+                    </select>
+                  </div>
+                  <span style="color:red" class="err" *ngIf="categoryForm.controls.origin.invalid && categoryForm.controls.origin.touched || categoryForm.controls.origin.invalid && reg.submitted"><small>*Parent category required</small></span><br>
+                <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Add Category</button>
+            </form>
+        </div>
+    </div>
+  </div>
+  
+
+<h1 class="m-5">Main Categories</h1>
+<div class="overflow-x-auto bg-white dark:bg-neutral-700 mb-5">
+
+    <!-- Table -->
+    <table class="min-w-full text-left text-sm whitespace-nowrap">
+  
+      <!-- Table head -->
+      <thead class="uppercase tracking-wider border-b-2 dark:border-neutral-600">
+        <tr>
+          <th scope="col" class="px-6 py-4">
+            Category Name
+          </th>
+          <th scope="col" class="px-6 py-4">
+            Category description
+          </th>
+          <th scope="col" class="px-6 py-4">
+            Action
+          </th>
+        </tr>
+      </thead>
+  
+      <!-- Table body -->
+      <tbody>
+  
+        <tr *ngFor="let item of mainCategory " class="border-b dark:border-neutral-600">
+          <td class="px-6 py-4">{{item.categoryName}}</td>
+          <td class="px-6 py-4">{{item.description}}</td>
+          <td class="px-6 py-4"><button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" (click)="deleteMainCategory(item._id)">delete</button></td>
+        </tr>
+  
+      </tbody>
+  
+    </table>
+  
+  </div>
+
+
+
+
+<h1 class="m-5">Sub Categories</h1>
+<div class="overflow-x-auto bg-white dark:bg-neutral-700">
+
+    <!-- Table -->
+    <table class="min-w-full text-left text-sm whitespace-nowrap">
+  
+      <!-- Table head -->
+      <thead class="uppercase tracking-wider border-b-2 dark:border-neutral-600">
+        <tr>
+          <th scope="col" class="px-6 py-4">
+            Category Name
+          </th>
+          <th scope="col" class="px-6 py-4">
+            Category description
+          </th>
+          <th scope="col" class="px-6 py-4">
+            Main category
+          </th>
+          <th scope="col" class="px-6 py-4">
+            Action
+          </th>
+        </tr>
+      </thead>
+  
+      <!-- Table body -->
+      <tbody>
+  
+        <tr *ngFor="let item of subCategory " class="border-b dark:border-neutral-600">
+          <td class="px-6 py-4">{{item.categoryName}}</td>
+          <td class="px-6 py-4">{{item.description}}</td>
+          <td class="px-6 py-4">{{item.origin}}</td>
+          <td class="px-6 py-4"><button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" (click)="delete(item._id)">delete</button></td>
+        </tr>
+  
+      </tbody>
+  
+    </table>
+  
+  </div>
+
+

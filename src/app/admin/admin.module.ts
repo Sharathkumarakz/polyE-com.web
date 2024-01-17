@@ -6,14 +6,22 @@ import { SharedModule } from '../shared/shared/shared.module';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ToastrService } from 'ngx-toastr';
-import { CategoryComponent } from '../su-admin/category/category.component';
-import { ProductsComponent } from '../su-admin/products/products.component';
-import { OrdersComponent } from '../su-admin/orders/orders.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { ContentLayoutComponent } from './layouts/content-layout/content-layout.component';
+import { AdminService } from '../services/admin.service';
+import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { AdminCategoryComponent } from './admin-category/admin-category.component';
+import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ContentLayoutComponent,
+    AdminUsersComponent,
+    AdminProductsComponent,
+    AdminCategoryComponent,
+    AdminOrdersComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +30,7 @@ import { OrdersComponent } from '../su-admin/orders/orders.component';
   ],
   providers:[
     ToastrService,
+    AdminService
   ] 
 })
 export class AdminModule { }

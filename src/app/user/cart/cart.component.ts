@@ -71,8 +71,6 @@ export class CartComponent implements OnInit{
   }
 
   removeFromCart(id:string){
-    console.log(id);
-    
      this.userService.removeFromCart(id).subscribe((res:any)=>{
       if(res.success){
         this.loadCartData();

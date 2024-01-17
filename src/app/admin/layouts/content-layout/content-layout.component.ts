@@ -10,7 +10,7 @@ export class ContentLayoutComponent {
   public router= inject(Router);
 
   logout(){
-     localStorage.removeItem('admin');
+     localStorage.removeItem('admin-infoTech');
      this.router.navigate(['/admin']);
   }
 }
