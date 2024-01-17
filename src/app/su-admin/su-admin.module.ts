@@ -11,6 +11,7 @@ import { CategoryComponent } from './category/category.component';
 import { ProductsComponent } from './products/products.component';
 import { ActiveAdminsComponent } from './active-admins/active-admins.component';
 import { OrdersComponent } from './orders/orders.component';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { OrdersComponent } from './orders/orders.component';
     CategoryComponent,
     ProductsComponent,
     ActiveAdminsComponent,
-    OrdersComponent
+    OrdersComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,

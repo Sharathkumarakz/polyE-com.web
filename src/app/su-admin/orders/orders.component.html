@@ -81,7 +81,11 @@
                 <option value="">{{ item.status }}</option>
                 <option value="Delivered">Delivered</option>
             </select>
-              <span class="text-green-700" *ngIf="item.status == 'Delivered'">Delivered</span>
+            <select *ngIf="item.status == 'Delivered'" (change)="onStatusChange(item._id,$event)">
+                <option value="">{{ item.status }}</option>
+                <option value="Delivered">Paid</option>
+            </select>
+              <span class="text-green-700" *ngIf="item.status == 'Paid'">Completed</span>
           </td>
           
         </tr>

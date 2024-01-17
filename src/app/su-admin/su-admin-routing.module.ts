@@ -13,7 +13,8 @@ const routes: Routes = [
   {path:'category',component:DashboardComponent,canActivate:[AdminGuardService]},
   {path:'products',component:DashboardComponent,canActivate:[AdminGuardService]},
   {path:'active-admins',component:DashboardComponent,canActivate:[AdminGuardService]},
-  {path:'su-admin-orders',component:DashboardComponent,canActivate:[AdminGuardService]}
+  {path:'su-admin-orders',component:DashboardComponent,canActivate:[AdminGuardService]},
+  {path:'users',component:DashboardComponent,canActivate:[AdminGuardService]}
 ];
 
 @NgModule({

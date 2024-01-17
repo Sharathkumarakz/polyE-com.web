@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { SuperAdminService } from '../../services/super-admin.service';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-active-admins',
@@ -49,4 +50,45 @@ export class ActiveAdminsComponent implements OnInit{
       }
     })
   }
-}
+
+
+  access(id:string,action:string){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Change access!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+         this.superAdminService.deleteProduct(id)
+         .subscribe({
+          next:(res:any) => {
+            Swal.fire(
+              'Updated!',
+              'Admin access changed.',
+              'success'
+            )
+            const data ={
+              id:id,
+              access: action
+            }
+            this.superAdminService.manageAccesss(data).subscribe({
+             next:(res:any)=>{
+              this.requstList = res.data;
+             },
+             error:(err)=>{
+             }
+            })
+        },
+        error:(err) => {
+          this.toster.warning(err.error.message,'Warning')
+        }
+       } )
+      }
+    })
+  }
+  }
+

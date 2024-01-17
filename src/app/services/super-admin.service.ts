@@ -128,4 +128,34 @@ getOrders(){
 setOrderStatus(data:object){
   return this.http.post(`${this.apiUrl}/suAdmin/order-status`,data);
 }
+
+/**
+ * api Method to manage Access
+ */
+manageAccesss(data:object){
+  return this.http.post(`${this.apiUrl}/suAdmin/manage-access`,data);
 }
+
+/**
+ * api Method for geting users
+ */
+getUsers(){
+  return this.http.get(`${this.apiUrl}/suAdmin/users`);
+}
+
+   /**
+   * Api function to block user;
+   */
+   blockUser(id:string){
+    return this.http.get(`${this.apiUrl}/suAdmin/user-block/`+id);
+  }
+
+    /**
+   * Api function to unblock user;
+   */
+    unblockUser(id:string){
+    return this.http.get(`${this.apiUrl}/suAdmin/user-unBlock/`+id);
+  }
+
+}
+
