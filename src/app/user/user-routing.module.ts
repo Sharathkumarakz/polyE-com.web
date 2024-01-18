@@ -9,6 +9,9 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { OrderComponent } from './order/order.component';
+import { BuyNowComponent } from './buy-now/buy-now.component';
+import { BuyWithoutSignupComponent } from './buy-without-signup/buy-without-signup.component';
+import { TrackMyProductComponent } from './track-my-product/track-my-product.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -18,7 +21,10 @@ const routes: Routes = [
   {path:'cart',component:CartComponent,canActivate:[UserGuardService]},
   {path:'checkout',component:CheckoutComponent,canActivate:[UserGuardService]},
   {path:'orders',component:OrderComponent,canActivate:[UserGuardService]},
-  {path:'order-success',component:OrderSuccessComponent,canActivate:[UserGuardService]},
+  {path:'order-success',component:OrderSuccessComponent},
+  {path:'buy-now/:id',component:BuyNowComponent,canActivate:[UserGuardService]},
+  {path:'buy-now/without-authentication/:id',component:BuyWithoutSignupComponent}, 
+  {path:'track',component:TrackMyProductComponent},
   {path:'auth',loadChildren:()=>import('./user-auth/user-auth.module').then((m)=>m.UserAuthModule)},
 ];
 

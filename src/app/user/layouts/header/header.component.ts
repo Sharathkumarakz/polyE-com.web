@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit{
         this.name = data.user.username;
       },
       error: (err) => {
-        console.log(err);
       },
     });
   }

@@ -91,4 +91,12 @@ export class ProductComponent implements OnInit{
     })
   }
 
+  buyNow(id:string){
+    if(localStorage.getItem('infoTech')){
+      this.router.navigate(['/buy-now/'+id]);
+    }else{
+      this.router.navigate(['/buy-now/without-authentication/'+id]); 
+    }
+  }
+
 }

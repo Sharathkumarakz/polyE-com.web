@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-order-success',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './order-success.component.css'
 })
 export class OrderSuccessComponent {
+  constructor(private route: ActivatedRoute) {}
 
+  orderId = '';
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.orderId = params['orderId'];
+    });
+  }
 }

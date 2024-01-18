@@ -17,6 +17,9 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { OrderComponent } from './order/order.component';
+import { BuyNowComponent } from './buy-now/buy-now.component';
+import { BuyWithoutSignupComponent } from './buy-without-signup/buy-without-signup.component';
+import { TrackMyProductComponent } from './track-my-product/track-my-product.component';
 
 
 @NgModule({
@@ -32,7 +35,10 @@ import { OrderComponent } from './order/order.component';
     CartComponent,
     CheckoutComponent,
     OrderSuccessComponent,
-    OrderComponent
+    OrderComponent,
+    BuyNowComponent,
+    BuyWithoutSignupComponent,
+    TrackMyProductComponent
   ],
   imports: [
     UserRoutingModule,

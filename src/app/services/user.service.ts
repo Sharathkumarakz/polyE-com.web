@@ -109,4 +109,11 @@ export class UserService {
     return this.http.get(`${this.apiUrl}/orders`);
   }
 
+    /**
+   * Get order
+   */
+  getOrderById(data:object){
+    return this.http.post(`${this.apiUrl}/order`,data);
+  }
+
 }

@@ -21,6 +21,9 @@
             User
           </th>
           <th scope="col" class="px-6 py-4">
+            Is User
+          </th>
+          <th scope="col" class="px-6 py-4">
             Quantity
           </th>
           <th scope="col" class="px-6 py-4">
@@ -28,6 +31,9 @@
           </th>
             <th scope="col" class="px-6 py-4">
            Price
+          </th>
+          <th scope="col" class="px-6 py-4">
+            Tracking Id
           </th>
             <th scope="col" class="px-6 py-4">
             phone
@@ -49,7 +55,10 @@
               {{product.productId.name}}
             </div>
           </td>
-          <td class="px-6 py-4">{{item.userId.email}}</td>
+          <td *ngIf="item.userId?.email" class="px-6 py-4">{{item.userId.email}}</td>
+          <td *ngIf="item?.email" class="px-6 py-4">{{item.email}}</td>
+          <td *ngIf="item.isTrust" class="px-6  text-green-500">Yes</td>
+          <td *ngIf="!item.isTrust" class="px-6 py-4">No</td>
           <td class="px-6 py-4">
             <div *ngFor="let product of item.product">
                 {{product.quantity}}
@@ -57,7 +66,10 @@
           </td>
           <td class="px-6 py-4">COD</td>
           <td class="px-6 py-4">{{item.total}}</td>
-          <td class="px-6 py-4">{{item.userId.phone}}</td>
+          <td *ngIf="item.userId?.phone" class="px-6 py-4">nill</td>
+          <td *ngIf="item?.email" class="px-6 py-4">{{item.trackCode}}</td>
+          <td *ngIf="item.userId?.phone" class="px-6 py-4">{{item.userId.phone}}</td>
+          <td *ngIf="item?.email" class="px-6 py-4">{{item.phone}}</td>
           <td class="px-6 py-4">
             <select *ngIf="item.status == 'confirmed'" (change)="onStatusChange(item._id,$event)">
                 <option value="">{{ item.status }}</option>
