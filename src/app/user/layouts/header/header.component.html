@@ -33,7 +33,7 @@
 		  </li>
 		  <li *ngIf="name" class="text-gray-600 md:mr-12 hover:text-blue-600"><a routerLink="/track" >{{name}}</a></li>
 		  <li  *ngIf="!name" class="text-gray-600 md:mr-12 hover:text-blue-600">
-			<button class="rounded-md border-2 border-blue-600 px-6 py-1 font-medium text-blue-600 transition-colors hover:bg-blue-600 hover:text-white"  routerLink="/auth/login">Sign up</button>
+			<button class="rounded-md border-2 border-blue-600 px-6 py-1 font-medium text-blue-600 transition-colors hover:bg-blue-600 hover:text-white"  routerLink="/auth/register">Sign up</button>
 		  </li>
 		  <li *ngIf="name" class="text-gray-600 md:mr-12 hover:text-blue-600">
 			<button class="rounded-md border-2 border-blue-600 px-6 py-1 font-medium text-blue-600 transition-colors hover:bg-blue-600 hover:text-white" (click)="logout()">logout</button>
